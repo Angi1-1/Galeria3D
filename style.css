@@ -1,0 +1,65 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    /*donde esta todo adjustado */
+}
+
+body {
+    background: linear-gradient(to right, #2c532c, #0f2027);
+    height: 100vh;
+    /*100 la medida de dispositipo*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /*Overflow no salir de la caja*/
+}
+
+.slider {
+    position: relative;
+    /*elemento padre, absoluto es de navegador */
+    width: 200px;
+    height: 200px;
+    transform-style: preserve-3d;
+    /*La propiedad transform-style decide si los elementos anidados presevan las transformaciones 3d o no que es flat. En nuestro caso 
+    queremos que el elemento .slider tenga transform-style: preserve-3d ya que queremos que los elementos hijos tengan un aspecto tridimensional (3d)*/
+    animation: rotate 25s linear infinite;
+    /*dar vueltas*/
+}
+
+@keyframes rotate {
+    0% {
+        transform: perspective(1000px) rotateY(0deg);
+    }
+    100% {
+        transform: perspective(1000px) rotateY(360deg);
+    }
+}
+
+.slider span {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    transform-origin: center;
+    transform-style: preserve-3d;
+    transform: rotateY(calc(var(--i)*45deg)) translateZ(350px);
+}
+
+.slider span img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    transition: 2s;
+}
+
+.slider span:hover img {
+    transform: translateY(-50px) scale(1.2);
+    /*scale aumentar el tamaño*/
+}
